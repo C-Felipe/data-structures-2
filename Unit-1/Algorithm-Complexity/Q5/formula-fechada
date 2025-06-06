@@ -1,0 +1,35 @@
+// Utilizando uma fórmula fechada.
+
+#include <stdio.h>
+#include <math.h>
+#include <time.h>
+
+#include <stdio.h>
+#include <math.h>
+#include <time.h>
+
+// Função que calcula o n-ésimo Fibonacci usando fórmula fechada (Binet)
+unsigned long long fibonacci_closed(int n) {
+    const double phi = (1 + sqrt(5)) / 2;
+    const double psi = (1 - sqrt(5)) / 2;
+    return (unsigned long long)round((pow(phi, n) - pow(psi, n)) / sqrt(5));
+}
+
+int main() {
+    int n = 20;                      // Valor de Fibonacci a ser calculado
+    int NMax = 100000;              // Número de repetições para cálculo da média
+    double total_time = 0;
+    unsigned long long result = 0;
+
+    for (int i = 0; i < NMax; i++) {
+        clock_t start = clock();
+        result = fibonacci_closed(n);         // Cálculo via fórmula fechada
+        clock_t end = clock();
+        total_time += (double)(end - start) / CLOCKS_PER_SEC;
+    }
+
+    // Exibe o tempo médio de execução
+    printf("Tempo médio: %.12f segundos\n", total_time / NMax);
+
+    return 0;
+}
