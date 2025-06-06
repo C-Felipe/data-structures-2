@@ -1,3 +1,5 @@
+// Cronometrando o algoritmo
+
 #include <stdio.h>
 #include <time.h>
 
